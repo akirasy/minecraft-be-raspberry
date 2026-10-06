@@ -1,0 +1,19 @@
+services:
+  bedrock-server:
+    build: .
+    container_name: mcberaspberry
+    stdin_open: true
+    tty: true
+    stop_grace_period: 30s
+    environment:
+      - BOX64_DYNAREC_BIGBLOCK=1
+      - BOX64_DYNAREC_STRONGMEM=1
+      - BOX64_DYNAREC_SAFEFLAGS=0
+      - BOX64_DYNAREC_CALLRET=1
+      - BOX64_DYNAREC_WAIT=1
+      - LD_LIBRARY_PATH=.
+    ports:
+      - "19132:19132/udp"
+      - "19133:19133/udp"
+    volumes:
+      - ./data:/data
