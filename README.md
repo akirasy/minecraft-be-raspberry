@@ -62,23 +62,21 @@ docker compose up -d
 
 ## Interacting with the Server Console
 
-Because the entrypoint routes input through a named pipe, you can safely attach to the container console to run in-game commands (e.g., `op <player>`, `list`, `say Hello`).
+Because the entrypoint routes input through a named pipe, use `send-command.sh` file to run in-game commands (e.g., `op <player>`, `list`, `say Hello`).
 
-### Attaching to the Console
-
-```
-docker attach mcberaspberry
-```
-
-### Detaching Safely
-
-To exit the console **without stopping the container**, press the detach key sequence:
+### Send in-game commands
 
 ```
-CTRL + P followed by CTRL + Q
+send-command.sh gamerule pvp false
 ```
 
-> ⚠️️ **Warning:** Pressing `CTRL + C` while attached will send a termination signal to the entrypoint script and stop the Minecraft server. Always use `CTRL + P` then `CTRL + Q` to detach.
+### Watch docker logs
+
+Review to return output of the command given.
+
+```
+docker logs -f mcberaspberry
+```
 
 ## License
 
