@@ -1,7 +1,7 @@
 services:
   bedrock-server:
     build: .
-    container_name: mcberaspberry
+    container_name: ${CONTAINER_NAME}
     stdin_open: true
     tty: true
     stop_grace_period: 30s

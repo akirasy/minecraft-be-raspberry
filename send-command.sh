@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Load shared config
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ -f "$SCRIPT_DIR/config.sh" ]; then
+    source "$SCRIPT_DIR/config.sh"
+else
+    echo "Error: config.sh not found."
+    exit 1
+fi
+
 # Exit immediately if no command argument is provided
 if [ -z "$1" ]; then
   echo "Usage: $0 <minecraft-command>"
@@ -7,7 +16,6 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-CONTAINER_NAME="mcberaspberry"
 COMMAND="$*"
 
 # Pass the command string into the container's named pipe
@@ -18,3 +26,4 @@ if [ $? -eq 0 ]; then
 else
   echo "Failed to send command to $CONTAINER_NAME"
 fi
+

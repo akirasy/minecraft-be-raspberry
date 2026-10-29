@@ -2,9 +2,16 @@
 
 set -e
 
-# Configuration
-WORLD_NAME="mcberaspberry"
-BACKUP_DIR="$PWD/backups"
+# Load shared config
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ -f "$SCRIPT_DIR/config.sh" ]; then
+    source "$SCRIPT_DIR/config.sh"
+else
+    echo "Error: config.sh not found."
+    exit 1
+fi
+
+BACKUP_DIR="$PWD/world-backups"
 SOURCE_DIR="$PWD/data"
 TIMESTAMP=$(date +"%y%m%d_%H%M")
 ARCHIVE_NAME="${WORLD_NAME}_${TIMESTAMP}.tar"
@@ -50,3 +57,4 @@ tar \
     "${FILES_TO_BACKUP[@]}"
 
 echo -e "\nBackup successfully created:\n  - $BACKUP_DIR/$ARCHIVE_NAME"
+
