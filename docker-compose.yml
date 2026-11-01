@@ -13,6 +13,7 @@ services:
       - BOX64_DYNAREC_WAIT=1
       - LD_LIBRARY_PATH=.
     ports:
+      - "19132:19132/tcp"
       - "19132:19132/udp"
       - "19133:19133/udp"
     volumes:

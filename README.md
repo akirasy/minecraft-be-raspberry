@@ -45,17 +45,14 @@ WORLD_NAME="mcberaspberry"
 
 ### 6. Configure `server.properties` (Important)
 
-Open `./data/server.properties` in a text editor and change the transport setting from `nethernet` to `raknet`:
+Open `./data/server.properties` in a text editor and ensure transport is set to `nethernet`:
 
 ```
-# Change this:
-# transport=nethernet
-
-# To this:
-transport=raknet
+transport=nethernet
+enable-lan-visibility=true
 ```
 
-> ⚠️ **Note:** The default `transport=nethernet` uses TCP signaling handshakes, which breaks connections on mobile clients when only UDP ports are published in Docker. Switching to `raknet` ensures standard UDP connectivity works out of the box.
+> ⚠️ **Note:** Latest releases of the Bedrock Dedicated Server (v1.26.61) strictly require nethernet. NetherNet uses TCP port 19132 for initial signaling handshakes alongside standard UDP ports for gameplay. Ensure TCP 19132 is exposed in Docker.
 
 ### 7. Build the Docker Image
 

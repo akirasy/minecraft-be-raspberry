@@ -24,6 +24,7 @@ docker run -d \
   -e BOX64_DYNAREC_CALLRET=1 \
   -e BOX64_DYNAREC_WAIT=1 \
   -e LD_LIBRARY_PATH=. \
+  -p 19132:19132/tcp \
   -p 19132:19132/udp \
   -p 19133:19133/udp \
   -v ./data:/data \
