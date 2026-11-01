@@ -89,6 +89,24 @@ Review to return output of the command given.
 docker logs -f mcberaspberry
 ```
 
+### Backing Up the Server
+
+The repository provides two backup scripts depending on whether your server is actively running or stopped. Archives are saved to `./world-backups/`.
+
+#### Live Server Backup (Online)
+Use this command when the Docker container is running and players are active:
+
+```
+./backup-online.sh
+```
+
+#### Direct File Backup (Offline)
+Use this command when the server container is stopped:
+
+```
+./backup-offline.sh
+```
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
