@@ -32,7 +32,18 @@ Extract the contents of the downloaded zip file into the `./data` folder:
 unzip bedrock-server-*.zip -d ./data
 ```
 
-### 5. Configure `server.properties` (Important)
+### 5. Configure Central Settings
+
+All container and world variables are managed centrally in `config.sh`. Review or edit `config.sh`:
+
+```
+CONTAINER_NAME="mcberaspberry"
+WORLD_NAME="mcberaspberry"
+```
+
+> Note: A symbolic link `.env` -> `config.sh` allows Docker Compose to automatically pick up `${CONTAINER_NAME}` alongside your Bash scripts.
+
+### 6. Configure `server.properties` (Important)
 
 Open `./data/server.properties` in a text editor and change the transport setting from `nethernet` to `raknet`:
 
@@ -46,13 +57,13 @@ transport=raknet
 
 > ⚠️ **Note:** The default `transport=nethernet` uses TCP signaling handshakes, which breaks connections on mobile clients when only UDP ports are published in Docker. Switching to `raknet` ensures standard UDP connectivity works out of the box.
 
-### 6. Build the Docker Image
+### 7. Build the Docker Image
 
 ```
 docker compose build -t mcberaspberry
 ```
 
-### 7. Run the Container
+### 8. Run the Container
 
 Start the server in detached mode:
 
